@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鞠欣怡 Ju Xinyi — Visual Designer Portfolio</title>
+<meta name="description" content="鞠欣怡作品集 — 视觉传达设计师，擅长文创、游戏美术、品牌视觉、字体设计与 AIGC 视觉创作。">
+<style>
+/* ============ RESET & BASE ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg2:#141414;--text:#f0ede8;--text2:#9a958d;
+  --accent:#c084fc;--accent2:#7c3aed;
+  --orange:#f59e0b;--green:#34d399;--cyan:#22d3ee;--red:#f87171;
+  --radius:12px;--nav-h:64px;
+  --font-sans:"Inter","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --font-display:"Playfair Display","Noto Serif SC",Georgia,serif;
+}
+html{scroll-behavior:smooth;font-size:16px;background:var(--bg);color:var(--text)}
+body{font-family:var(--font-sans);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#fff}
+
+/* ============ TYPOGRAPHY ============ */
+.serif{font-family:var(--font-display)}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,4vw,48px);
+  background:rgba(10,10,10,.8);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:transform .35s ease;
+}
+.nav.hide{transform:translateY(-100%)}
+.nav-logo{font-size:18px;font-weight:700;letter-spacing:2px}
+.nav-logo span{color:var(--accent);font-weight:400}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);transition:color .25s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.nav-toggle span{width:22px;height:2px;background:var(--text);transition:all .3s}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:50% 50%;
+  align-items:stretch;position:relative;overflow:hidden;
+}
+.hero-tangram-side{
+  position:relative;overflow:hidden;
+}
+.hero-tangram-side img{
+  width:100%;height:100%;object-fit:cover;
+}
+.hero-info-side{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + 40px) clamp(32px,4vw,64px) 60px;
+  text-align:left;position:relative;z-index:1;
+}
+.hero h1{
+  font-family:var(--font-display);font-size:clamp(42px,7vw,88px);
+  font-weight:700;line-height:1;letter-spacing:-2px;
+  margin-bottom:20px;
+}
+.hero h1 .cn{display:block;font-size:clamp(24px,4vw,48px);letter-spacing:8px;margin-bottom:8px;font-weight:400}
+.hero-sub{
+  font-size:clamp(14px,1.6vw,17px);color:var(--text2);
+  letter-spacing:1px;line-height:1.8;margin-bottom:32px;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px}
+.hero-tags span{
+  font-size:12px;padding:6px 16px;border:1px solid rgba(255,255,255,.15);
+  border-radius:100px;color:var(--text2);letter-spacing:1px;
+  transition:all .3s;
+}
+.hero-tags span:hover{border-color:var(--accent);color:var(--accent)}
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-size:12px;color:var(--text2);letter-spacing:2px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:float 2s ease-in-out infinite;
+}
+.hero-scroll::after{content:"";width:1px;height:32px;background:linear-gradient(var(--text2),transparent)}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+/* ============ SECTIONS ============ */
+section{padding:100px clamp(20px,5vw,80px)}
+.section-header{margin-bottom:60px}
+.section-header h2{
+  font-family:var(--font-display);font-size:clamp(32px,5vw,56px);
+  font-weight:700;margin-bottom:12px;
+}
+.section-header p{color:var(--text2);font-size:15px;max-width:560px}
+.section-num{
+  font-size:12px;letter-spacing:4px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:8px;display:block;
+}
+
+/* ============ ABOUT ============ */
+.about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.about-photo{
+  aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));position:relative;
+}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-info h3{font-size:24px;margin-bottom:16px}
+.about-info p{color:var(--text2);margin-bottom:20px;line-height:1.8}
+.about-stats{display:flex;gap:40px;margin-top:32px}
+.about-stats .stat{text-align:center}
+.about-stats .stat-num{font-size:36px;font-weight:700;font-family:var(--font-display);color:var(--accent)}
+.about-stats .stat-label{font-size:12px;color:var(--text2);letter-spacing:1px;margin-top:4px}
+.skills-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.skill-pill{
+  font-size:12px;padding:6px 14px;background:rgba(192,132,252,.1);
+  border:1px solid rgba(192,132,252,.2);border-radius:100px;color:var(--accent);
+  letter-spacing:.5px;
+}
+
+/* ============ PROJECT CARDS ============ */
+.projects-grid{display:flex;flex-direction:column;gap:120px}
+.project-card{position:relative}
+.project-card .card-meta{margin-bottom:24px}
+.project-card .card-meta .tag{
+  display:inline-block;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+}
+.project-card .card-meta h3{
+  font-family:var(--font-display);font-size:clamp(28px,4vw,48px);
+  font-weight:700;margin-bottom:8px;
+}
+.project-card .card-meta .desc{color:var(--text2);font-size:15px;max-width:640px;line-height:1.8}
+
+.card-gallery{
+  display:grid;gap:12px;
+}
+.card-gallery.cols-2{grid-template-columns:repeat(2,1fr)}
+.card-gallery.cols-3{grid-template-columns:repeat(3,1fr)}
+.card-gallery img{
+  width:100%;border-radius:var(--radius);cursor:pointer;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),filter .3s;
+  filter:brightness(.92);
+}
+.card-gallery img:hover{transform:scale(1.02);filter:brightness(1)}
+
+.card-gallery .span-2{grid-column:span 2}
+.card-gallery .span-full{grid-column:1/-1}
+
+/* ============ PANORAMA SCROLL ============ */
+.panorama-wrap{
+  width:100%;overflow:hidden;border-radius:var(--radius);
+  background:#f5f0e6;position:relative;margin-top:16px;
+  grid-column:1/-1;
+}
+.panorama-track{
+  display:flex;width:max-content;
+  animation:panScroll 45s linear infinite;
+}
+.panorama-track:hover{animation-play-state:paused}
+.panorama-track img{height:clamp(280px,35vw,480px);width:auto;display:block;flex-shrink:0}
+@keyframes panScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============ LIGHTBOX ============ */
+.lightbox{
+  position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.94);
+  display:none;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .35s;cursor:zoom-out;
+  backdrop-filter:blur(10px);
+}
+.lightbox.open{display:flex;opacity:1}
+.lightbox img{
+  max-width:92vw;max-height:92vh;border-radius:8px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  animation:lbIn .4s ease;
+}
+@keyframes lbIn{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.lightbox-close{
+  position:fixed;top:24px;right:24px;width:40px;height:40px;
+  background:rgba(255,255,255,.1);border:none;border-radius:50%;
+  color:#fff;font-size:20px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;z-index:201;
+}
+.lightbox-nav{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;background:rgba(255,255,255,.1);
+  border:none;border-radius:50%;color:#fff;font-size:24px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:201;
+  transition:background .2s;
+}
+.lightbox-nav:hover{background:rgba(255,255,255,.2)}
+.lightbox-prev{left:20px}
+.lightbox-next{right:20px}
+.lightbox-counter{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  font-size:13px;color:var(--text2);letter-spacing:2px;z-index:201;
+}
+
+/* ============ CONTACT ============ */
+.contact{text-align:center;padding-bottom:120px}
+.contact h2{font-family:var(--font-display);font-size:clamp(36px,6vw,64px);margin-bottom:16px}
+.contact p{color:var(--text2);font-size:16px;margin-bottom:40px}
+.contact-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.contact-links a{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 24px;border:1px solid rgba(255,255,255,.15);
+  border-radius:100px;font-size:14px;color:var(--text2);
+  transition:all .3s;letter-spacing:.5px;
+}
+.contact-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,132,252,.06)}
+
+/* ============ FOOTER ============ */
+.footer{
+  text-align:center;padding:40px 24px;
+  border-top:1px solid rgba(255,255,255,.06);
+  font-size:12px;color:var(--text2);letter-spacing:1px;
+}
+
+/* ============ DIVIDER ============ */
+.divider{
+  width:60px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);
+  margin:24px 0;
+}
+
+/* ============ ANIMATIONS ============ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;text-align:center}
+  .about-photo{max-width:240px;margin:0 auto}
+  .about-stats{justify-content:center}
+  .skills-grid{justify-content:center}
+  .card-gallery.cols-3{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-tangram-side{min-height:40vh}
+  .hero-info-side{text-align:center;padding-top:32px}
+  .hero-tags{justify-content:center}
+}
+@media(max-width:640px){
+  .nav-links{
+    position:fixed;top:0;right:-100%;width:75%;height:100vh;
+    background:var(--bg);flex-direction:column;padding:100px 40px;
+    gap:24px;transition:right .35s ease;z-index:99;
+  }
+  .nav-links.open{right:0}
+  .nav-links a{font-size:18px}
+  .nav-toggle{display:flex}
+  .card-gallery.cols-2,.card-gallery.cols-3{grid-template-columns:1fr}
+  .card-gallery .span-2{grid-column:span 1}
+  section{padding:60px 16px}
+  .projects-grid{gap:80px}
+  .hero h1{letter-spacing:0}
+  .about-stats{flex-wrap:wrap;gap:24px}
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">JU<span>XINYI</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-tangram-side">
+    <img src="images/hero_tangram.png" alt="">
+  </div>
+  <div class="hero-info-side">
+    <h1>
+      <span class="cn">鞠欣怡</span>
+      Ju Xinyi
+    </h1>
+    <p class="hero-sub">
+      视觉传达设计师<br>
+      从文化调研到视觉落地的全链路创意实践者
+    </p>
+    <div class="hero-tags">
+      <span>文创设计</span>
+      <span>游戏美术</span>
+      <span>字体设计</span>
+      <span>品牌视觉</span>
+      <span>UI/IP 设计</span>
+      <span>AIGC</span>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">Selected Works</span>
+    <h2 class="serif">项目展示</h2>
+    <div class="divider"></div>
+    <p>从传统文化到游戏美术，从字体设计到商业落地——每个项目都是一次从概念到成果的完整旅程。</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Dave the Diver -->
+    <div class="project-card reveal" data-gallery="dave">
+      <div class="card-meta">
+        <span class="tag">数据可视化 · 信息设计 · 周边</span>
+        <h3>Dave the Diver · 通关报告</h3>
+        <p class="desc">将 66 小时的《潜水员戴夫》游戏数据转化为多维度可视化长图，通过多屏叙事展示主线剧情、数据统计与角色图鉴，并延伸设计了拼豆鱼类周边。</p>
+      </div>
+      <div class="card-gallery cols-2">
+        <img src="images/06商业作品_画板_1-01.jpg" alt="Dave the Diver · 封面" class="span-full" loading="lazy">
+        <img src="images/06商业作品_画板_1-02.jpg" alt="Dave the Diver · 数据可视化" loading="lazy">
+        <img src="images/06商业作品_画板_1-03.jpg" alt="Dave the Diver · 页面与周边" loading="lazy">
+      </div>
+    </div>
+
+    <!-- AluK Home -->
+    <div class="project-card reveal" data-gallery="aluk">
+      <div class="card-meta">
+        <span class="tag">品牌空间 · 展厅设计 · 物料规范</span>
+        <h3>AluK Home · 展厅设计规范</h3>
+        <p class="desc">为意大利铝门窗品牌 AluK 完成零售展厅视觉陈设方案，涵盖五金配件展示墙、灯箱广告、装修围挡与宣传单页（单页/三折页/手册）的全套设计指导规范。</p>
+      </div>
+      <div class="card-gallery cols-2">
+        <img src="images/06商业作品_画板_1_副本.jpg" alt="AluK Home · 封面" class="span-full" loading="lazy">
+        <img src="images/06商业作品_画板_1_副本_2-05.jpg" alt="AluK Home · 展示方案" loading="lazy">
+        <img src="images/06商业作品_画板_1_副本_2-06.jpg" alt="AluK Home · 围挡与印刷" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 03 仓鼠冒险 -->
+    <div class="project-card reveal" data-gallery="hamster">
+      <div class="card-meta">
+        <span class="tag">书籍设计 · 桌游 · 角色原画</span>
+        <h3>仓鼠冒险<span style="font-size:.5em;opacity:.5;margin-left:12px">BO6 Hamster's Adventure</span></h3>
+        <p class="desc">毕业设计双联项目。Part A「仓鼠冒险指南」：一本用 4 种纸张、咖啡染色工艺手工制作的仓鼠饲养百科。Part B「BO6 桌游」：一套含 23 个手绘角色、完整游戏机制、包装与说明书的原创对战策略卡牌桌游。</p>
+      </div>
+      <div class="card-gallery cols-3">
+        <img src="images/03仓鼠冒险指南_画板_1-01.jpg" alt="仓鼠冒险指南 · 封面" class="span-full" loading="lazy">
+        <img src="images/03仓鼠冒险指南_画板_1-02.jpg" alt="仓鼠冒险指南 · 内页" loading="lazy">
+        <img src="images/03仓鼠冒险指南_画板_1-03.jpg" alt="仓鼠冒险指南 · 工艺细节" loading="lazy">
+        <img src="images/03仓鼠冒险指南_画板_1-04.jpg" alt="仓鼠冒险指南 · 版式设计" loading="lazy">
+        <img src="images/03仓鼠冒险指南_画板_1-05.jpg" alt="仓鼠冒险指南 · 实物展示" class="span-full" loading="lazy">
+        <img src="images/03B仓鼠冒险桌游_画板_1-01.jpg" alt="BO6 桌游 · 项目概览" class="span-full" loading="lazy">
+        <img src="images/03B仓鼠冒险桌游_画板_1-02.jpg" alt="BO6 桌游 · 玩法简介" loading="lazy">
+        <img src="images/03B仓鼠冒险桌游_画板_1-03.jpg" alt="BO6 桌游 · 卡牌设计" loading="lazy">
+        <img src="images/03B仓鼠冒险桌游_画板_1-04.jpg" alt="BO6 桌游 · 角色进阶版" loading="lazy">
+        <img src="images/03B仓鼠冒险桌游_画板_1_副本.jpg" alt="BO6 桌游 · 包装与展示" class="span-full" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 05 大美唐闸 -->
+    <div class="project-card reveal" data-gallery="tangzha">
+      <div class="card-meta">
+        <span class="tag">文创产品 · 插画 · 包装</span>
+        <h3>大美唐闸 · 织港风华</h3>
+        <p class="desc">以江苏南通唐闸古镇——中国近代工业发源地——为主题的文创系列设计。提取棉纺、码头、轮船公司四大核心元素，设计冰箱贴徽章系列，配套包装与帆布袋，用现代文创语言再现百年工业文脉。</p>
+      </div>
+      <div class="card-gallery cols-2">
+        <img src="images/05大美唐闸_画板_1-01.jpg" alt="大美唐闸 · 项目封面" class="span-full" loading="lazy">
+        <img src="images/05大美唐闸_画板_1-02.jpg" alt="大美唐闸 · 平面图与灵感来源" class="span-full" loading="lazy">
+        <img src="images/05大美唐闸_画板_1-03.jpg" alt="大美唐闸 · 线稿与包装" class="span-full" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 01 芹圃京梦 -->
+    <div class="project-card reveal" data-gallery="qinpu">
+      <div class="card-meta">
+        <span class="tag">文创 · IP · UI</span>
+        <h3>芹圃京梦</h3>
+        <p class="desc">2022-2023 北京市大学生创新创业项目。以曹雪芹在京遗迹为线索，完成了纸质寻访地图、微信小程序 UI 与 IP 形象设计，实现了从文化调研到数字化视觉转化的完整链路。</p>
+      </div>
+      <div class="card-gallery cols-2">
+        <img src="images/01芹圃京梦_画板_1-01.jpg" alt="芹圃京梦 · 项目封面" class="span-full" loading="lazy">
+        <img src="images/01芹圃京梦_画板_1-02.jpg" alt="芹圃京梦 · 项目背景与设计思路" loading="lazy">
+        <img src="images/01芹圃京梦_画板_1-03.jpg" alt="芹圃京梦 · 视觉转化与 IP 设计" loading="lazy">
+        <img src="images/01芹圃京梦_画板_1_副本_3.jpg" alt="芹圃京梦 · 设计成果与实物" loading="lazy">
+        <img src="images/01芹圃京梦_画板_1_副本_5.jpg" alt="芹圃京梦 · 小程序与多端适配" loading="lazy">
+        <div class="panorama-wrap">
+          <div class="panorama-track">
+            <img src="images/qinpu_panorama.jpg" alt="芹圃京梦 · 全景地图">
+            <img src="images/qinpu_panorama.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 刘家功夫针铺体 -->
+    <div class="project-card reveal" data-gallery="font">
+      <div class="card-meta">
+        <span class="tag">字体设计 · 传统文化</span>
+        <h3>刘家功夫针铺体</h3>
+        <p class="desc">基于北宋「济南刘家功夫针铺」铜版——现存世界最早的商业印刷广告——提取笔划结构，延续民间艺术质朴风格，与简体中文结合，实现传统文化的现代字体转化。</p>
+      </div>
+      <div class="card-gallery cols-2">
+        <img src="images/04刘家功夫针铺体_画板_1_副本_7-01.jpg" alt="刘家功夫针铺体 · 封面" class="span-full" loading="lazy">
+        <img src="images/04刘家功夫针铺体_画板_1_副本_7-02.jpg" alt="刘家功夫针铺体 · 背景与笔划提取" loading="lazy">
+        <img src="images/04刘家功夫针铺体_画板_1.jpg" alt="刘家功夫针铺体 · 笔划确认与字体尝试" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 07 其他 -->
+    <div class="project-card reveal" data-gallery="other">
+      <div class="card-meta">
+        <span class="tag">手绘 · 插画 · 手工</span>
+        <h3>Art & Craft</h3>
+        <p class="desc">素描与插画：抗美援朝主题超写实水彩、COSCO 建国 75 周年系列主题插画。手工：泥条盘筑蛇碗、AirPods 涂装、粘土造景、微缩模型、兔毛围巾。</p>
+      </div>
+      <div class="card-gallery cols-2">
+        <img src="images/07其他_画板_1-02.jpg" alt="COSCO 建国75周年系列插画" class="span-full" loading="lazy">
+        <img src="images/07其他_画板_1-01.jpg" alt="Art · 素描与插画" loading="lazy">
+        <img src="images/07其他_画板_1-03.jpg" alt="Craft · 手工作品" loading="lazy">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-header reveal">
+    <span class="section-num">About Me</span>
+    <h2 class="serif">关于我</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-photo">
+      <img src="images/portrait.jpg" alt="鞠欣怡 Ju Xinyi">
+    </div>
+    <div class="about-info">
+      <h3>鞠欣怡 <span style="font-weight:400;font-size:16px;color:var(--text2)">Ju Xinyi</span></h3>
+      <p>
+        北京印刷学院 · 视觉传达设计专业。GPA 3.78，CET-6。
+        大广赛全国一等奖获得者，校艺术团团长，心理协会社长。
+      </p>
+      <p>
+        具备从视觉概念、创意策划到设计落地的完整能力。项目涵盖文创设计、游戏美术、字体设计、品牌视觉、UI/IP 设计与影像拍摄。关注 AIGC 在视觉创作中的应用，能将 AI 生成素材融入设计工作流。
+      </p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">24+</div><div class="stat-label">完整项目</div></div>
+        <div class="stat"><div class="stat-num">3.78</div><div class="stat-label">GPA</div></div>
+        <div class="stat"><div class="stat-num serif">1st</div><div class="stat-label">大广赛全国</div></div>
+      </div>
+      <div class="skills-grid" style="margin-top:32px">
+        <span class="skill-pill">Photoshop</span>
+        <span class="skill-pill">Illustrator</span>
+        <span class="skill-pill">InDesign</span>
+        <span class="skill-pill">Figma</span>
+        <span class="skill-pill">Premiere Pro</span>
+        <span class="skill-pill">After Effects</span>
+        <span class="skill-pill">Midjourney</span>
+        <span class="skill-pill">Stable Diffusion</span>
+        <span class="skill-pill">LibTV</span>
+        <span class="skill-pill">手绘插画</span>
+        <span class="skill-pill">摄影摄像</span>
+        <span class="skill-pill">品牌视觉</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <span class="section-num">Get In Touch</span>
+    <h2 class="serif">联系方式</h2>
+    <div class="divider" style="margin:24px auto"></div>
+    <p>期待与你合作，或者只是聊聊设计。</p>
+    <div class="contact-links">
+      <a href="mailto:xinyiorange@outlook.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        xinyiorange@outlook.com
+      </a>
+      <a href="tel:13773643336">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        137-7364-3336
+      </a>
+      <a href="https://www.xiaohongshu.com/user/profile/orange_flash" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        小红书 @orange flash
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 鞠欣怡 Ju Xinyi. All rights reserved.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav hide on scroll
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  document.getElementById('nav').classList.toggle('hide', y > lastY && y > 200);
+  lastY = y;
+  document.getElementById('navLinks').classList.remove('open');
+});
+
+// Lightbox
+let lbImages = [], lbIndex = 0;
+document.querySelectorAll('.card-gallery img').forEach(img => {
+  img.addEventListener('click', () => {
+    const gallery = img.closest('.card-gallery');
+    lbImages = Array.from(gallery.querySelectorAll('img')).map(i => i.src);
+    lbIndex = lbImages.indexOf(img.src);
+    openLightbox();
+  });
+});
+
+function openLightbox() {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = lbImages[lbIndex];
+  document.getElementById('lightboxCounter').textContent = `${lbIndex + 1} / ${lbImages.length}`;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  document.getElementById('lightboxImg').src = lbImages[lbIndex];
+  document.getElementById('lightboxCounter').textContent = `${lbIndex + 1} / ${lbImages.length}`;
+}
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+</script>
+</body>
+</html>
